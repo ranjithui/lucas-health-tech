@@ -1,0 +1,96 @@
+LUCAS HEALTH TECH WEBSITE - HOW TO RUN
+======================================
+
+REQUIREMENTS
+------------
+- Node.js 20 or newer (tested with Node 24)  ->  https://nodejs.org
+- npm (comes with Node.js)
+
+The project folder is:  lucas-health-tech
+
+
+1) INSTALL DEPENDENCIES (first time only)
+-----------------------------------------
+Open a terminal (PowerShell or Command Prompt) and run:
+
+    cd "C:\Users\USER\ui ux\Lucas Health Tech\lucas-health-tech"
+    npm install
+
+
+2) RUN THE WEBSITE LOCALLY (development)
+----------------------------------------
+    npm run dev
+
+Then open in your browser:
+
+    http://localhost:5173
+
+The page reloads automatically when you edit files.
+Press Ctrl + C in the terminal to stop the server.
+
+
+3) BUILD FOR PRODUCTION
+-----------------------
+    npm run build
+
+This type-checks the code and creates an optimized site in the "dist" folder.
+Upload the contents of "dist" to any static host (Vercel, Netlify, Cloudflare Pages,
+S3 + CloudFront, or a normal web server).
+
+To preview the production build locally:
+
+    npm run preview
+
+Then open  http://localhost:4173
+
+
+4) OPTIONAL: LINT
+-----------------
+    npm run lint
+
+
+5) CONTACT FORM (important before going live)
+---------------------------------------------
+The "Talk to an Expert" form posts JSON to an endpoint defined in an .env file.
+Copy ".env.example" to ".env" and set:
+
+    VITE_CONTACT_ENDPOINT=https://your-endpoint-here
+
+(e.g. Formspree, HubSpot, a serverless function, or the CRM webhook.)
+If left empty, submissions are simulated so the experience still works locally.
+Rebuild after changing .env.
+
+
+6) WHERE THE CONTENT LIVES
+--------------------------
+All text, numbers, services, engagements, testimonials, industries, and
+insight articles are in:
+
+    lucas-health-tech/src/data/
+
+    company.ts       -> tagline, phone, hours, metrics, differentiators
+    solutions.ts     -> the four solutions and their workflows
+    engagements.ts   -> case studies
+    testimonials.ts  -> references
+    industries.ts    -> industries served
+    insights.ts      -> knowledge-hub articles
+    assistant.ts     -> approved answers for the website assistant
+
+Edit these files to update content; no component changes are needed.
+
+
+7) HOSTING NOTES (single-page app)
+----------------------------------
+All routes must fall back to index.html:
+  - Vercel:  vercel.json is already included
+  - Netlify: public/_redirects is already included
+  - Other servers: configure a rewrite of /* -> /index.html
+
+
+TROUBLESHOOTING
+---------------
+- "npm is not recognized"  -> install Node.js and reopen the terminal.
+- Port 5173 already in use -> run:  npm run dev -- --port 3000
+- Blank page after deploy   -> the host is missing the SPA rewrite (see section 7).
+- Fonts look different     -> the site loads Manrope and Inter from Google Fonts;
+                              check that the network allows fonts.googleapis.com.
