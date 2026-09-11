@@ -10,10 +10,12 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: devPort,
+    allowedHosts: ['localhost', '127.0.0.1', 'lucas-health-tech.onrender.com'],
   },
   preview: {
     host: '0.0.0.0',
     port: devPort,
+    allowedHosts: ['localhost', '127.0.0.1', 'lucas-health-tech.onrender.com'],
   },
   build: {
     target: 'es2020',
